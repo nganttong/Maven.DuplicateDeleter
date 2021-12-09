@@ -1,5 +1,7 @@
 package com.zipcodewilmington.looplabs;
 
+import java.util.Arrays;
+
 /**
  * Created by leon on 1/29/18.
  * @ATTENTION_TO_STUDENTS You are forbidden from modifying the signature of this class.
@@ -11,11 +13,19 @@ public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
 
     @Override
     public Integer[] removeDuplicates(int maxNumberOfDuplications) {
-        return new Integer[0];
+        return Arrays.stream(array)
+                .filter(number -> getOccurance(number) < maxNumberOfDuplications)
+                .toArray(Integer[]::new);
     }
 
     @Override
     public Integer[] removeDuplicatesExactly(int exactNumberOfDuplications) {
-        return new Integer[0];
+        return Arrays.stream(array)
+                .filter(t -> getOccurance(t) != exactNumberOfDuplications)
+                .toArray(Integer[]::new);    }
+
+    public long getOccurance (Integer number) {
+        return Arrays.stream(array)
+                .filter(anotherNumber -> anotherNumber.equals(number)).count();
     }
 }
