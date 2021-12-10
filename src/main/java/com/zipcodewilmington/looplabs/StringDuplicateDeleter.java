@@ -22,7 +22,7 @@ public final class StringDuplicateDeleter extends DuplicateDeleter<String> {
     @Override
     public String[] removeDuplicatesExactly(int exactNumberOfDuplications) {
         return Arrays.stream(array)
-                .filter(t -> getOccurance(t) != exactNumberOfDuplications)
+                .filter(number -> getOccurance(number) != exactNumberOfDuplications)
                 .toArray(String[]::new);
     }
 
